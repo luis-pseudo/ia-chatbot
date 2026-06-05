@@ -1,4 +1,3 @@
-// La URL se inyectará mediante GitHub Actions por seguridad
 const API_URL = "https://lpseudo-terrar-ia.hf.space/chat";
 
 const userInput = document.getElementById('user-input');
@@ -8,6 +7,9 @@ const container = document.getElementById('chat-container');
 async function sendMessage() {
     const message = userInput.value.trim();
     if (!message) return;
+
+    // 1. Deshabilitar controles
+    setLoading(true);
 
     // Mostrar mensaje del usuario
     appendMessage("Tú", message, "bg-blue-900 ml-auto");
@@ -33,9 +35,29 @@ async function sendMessage() {
     } catch (error) {
         document.getElementById(typingId).innerText = "Error: No se pudo conectar con la API.";
         console.error(error);
+    } finally {
+        // 2. Reestablecer controles al terminar (sea éxito o error)
+        setLoading(false);
+        container.scrollTop = container.scrollHeight;
+        userInput.focus(); // Devolver el foco al input para seguir escribiendo
     }
-    
-    container.scrollTop = container.scrollHeight;
+}
+
+// Función para bloquear/desbloquear la interfaz
+function setLoading(isLoading) {
+    if (isLoading) {
+        userInput.disabled = true;
+        sendButton.disabled = true;
+        sendButton.innerText = "Wait...";
+        sendButton.classList.add('opacity-50', 'cursor-not-allowed');
+        userInput.classList.add('bg-gray-800');
+    } else {
+        userInput.disabled = false;
+        sendButton.disabled = false;
+        sendButton.innerText = "Enviar";
+        sendButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        userInput.classList.remove('bg-gray-800');
+    }
 }
 
 function appendMessage(sender, text, bgColor, id = "") {
@@ -51,5 +73,5 @@ function appendMessage(sender, text, bgColor, id = "") {
 // Eventos
 sendButton.addEventListener('click', sendMessage);
 userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
+    if (e.key === 'Enter' && !userInput.disabled) sendMessage();
 });
