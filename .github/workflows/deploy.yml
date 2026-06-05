@@ -4,7 +4,6 @@ on:
   push:
     branches: ["master"]
 
-# ESTO ES LO QUE DEBES AÑADIR:
 permissions:
   contents: write
 
