@@ -1,5 +1,5 @@
 // La URL se inyectará mediante GitHub Actions por seguridad
-const API_URL = "API_URL_PLACEHOLDER";
+const API_URL = "https://lpseudo-terrar-ia.hf.space/chat";
 
 const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
