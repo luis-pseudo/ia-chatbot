@@ -2,7 +2,11 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["master"] # Asegúrate de que tu rama principal sea main
+    branches: ["master"]
+
+# ESTO ES LO QUE DEBES AÑADIR:
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -18,5 +22,5 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: . # Sube la raíz del proyecto
-          branch: gh-pages # Se creará una rama gh-pages para el sitio
+          folder: . 
+          branch: gh-pages
