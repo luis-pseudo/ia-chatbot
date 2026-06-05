@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraria AI Chat</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tu CSS personalizado -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-white font-sans h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="p-4 border-b border-gray-700 bg-gray-800 text-center">
+        <h1 class="text-xl font-bold text-green-400">🌳 Terraria Wiki Guide AI</h1>
+        <p class="text-xs text-gray-400">Conectado a Hugging Face API</p>
+    </header>
+
+    <!-- Chat Box -->
+    <main id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4">
+        <div class="bg-gray-800 p-3 rounded-lg max-w-[80%]">
+            ¡Hola! Soy tu guía de Terraria. ¿En qué puedo ayudarte hoy?
+        </div>
+    </main>
+
+    <!-- Input Area -->
+    <footer class="p-4 bg-gray-800 border-t border-gray-700">
+        <div class="flex space-x-2">
+            <input type="text" id="user-input" placeholder="Pregunta sobre jefes, armas..." 
+                   class="flex-1 bg-gray-700 border border-gray-600 rounded-lg p-2 focus:outline-none focus:border-green-500">
+            <button id="send-button" class="bg-green-600 hover:bg-green-500 px-4 py-2 rounded-lg font-bold transition">
+                Enviar
+            </button>
+        </div>
+    </footer>
+
+    <!-- Tu JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
